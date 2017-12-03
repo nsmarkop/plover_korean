@@ -1,5 +1,14 @@
-Plover Korean System
-=======================
+=================
+Plover Korean CAS
+=================
+Korean system for `Plover <https://github.com/openstenoproject/plover>`_ based on the CAS layout.
 
-TODO: How to install / update.
-TODO: How the system works, at least to a basic level.
+The dictionary is still under development.
+
+How to Install
+==============
+TODO
+
+System Description
+==================
+TODO
