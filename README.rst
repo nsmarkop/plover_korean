@@ -1,4 +1,5 @@
-Plover Korean CAS System
+Plover Korean System
 =======================
 
-TODO
+TODO: How to install / update.
+TODO: How the system works, at least to a basic level.
