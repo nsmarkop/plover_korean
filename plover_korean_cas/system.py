@@ -19,7 +19,10 @@ KEYS = (
 # These are usually the keys that separate the hands so the resulting
 # stroke only includes an actual hyphen if it it skips these keys
 # completely while using either both hands or just the right hand.
-IMPLICIT_HYPHEN_KEYS = ('ㅗ-', 'ㅏ-', 'ㅜ-', '-*', '-ㅓ', '-ㅣ')
+IMPLICIT_HYPHEN_KEYS = (
+    'ㅗ-', 'ㅏ-', 'ㅜ-',
+    '-*', '-ㅓ', '-ㅣ'
+)
 
 # SUFFIX_KEYS defines singular keys that can add suffixes to existing entries.
 # The version with the suffix needs to be defined in a dictionary.
@@ -33,7 +36,7 @@ NUMBERS = {}
 
 # UNDO_STROKE_STENO is what input causes the previous stroke to be undone.
 # Such behavior cannot be defined as a stroke in the dictionary.
-UNDO_STROKE_STENO = '7ㅇ'
+UNDO_STROKE_STENO = '-ㅂㄴ'
 
 # ORTHOGRAPHY_RULES defines language specific spelling patterns for
 # suffixes as an array of Python regex entries for input and output.
