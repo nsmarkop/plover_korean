@@ -3,14 +3,19 @@ Stenography model for Korean based on the CAS layout.
 '''
 
 # KEYS defines the stenography system. Organized by rows and hands.
+# Consonant groups don't internally follow a steno order when constructing words.
 KEYS = (
     '1-', '2-', '3-', '4-', '5-',
+    # 초성 - Initial consonant
     'ㅎ-', 'ㅁ-', 'ㄱ-', 'ㅈ-', 'ㄴ-',
     'ㄷ-', 'ㅇ-', 'ㅅ-', 'ㅂ-', 'ㄹ-',
-    'ㅗ-', 'ㅏ-', 'ㅜ-',
 
+    # 중성 - Medial vowel
+    'ㅗ-', 'ㅏ-', 'ㅜ-',
     '-*', '-ㅓ', '-ㅣ',
+
     '-6', '-7', '-8', '-9', '-0',
+    # 종성 - Final consonant
     '-ㅎ', '-ㅇ', '-ㄹ', '-ㄱ', '-ㄷ',
     '-ㅂ', '-ㄴ', '-ㅅ', '-ㅈ', '-ㅁ'
 )
@@ -35,8 +40,12 @@ NUMBER_KEY = ''
 NUMBERS = {}
 
 # UNDO_STROKE_STENO is what input causes the previous stroke to be undone.
-# Such behavior cannot be defined as a stroke in the dictionary.
-UNDO_STROKE_STENO = '-ㅂㄴ'
+# The stroke for undo can be overridden or alternatives can be made in a dictionary.
+# NOTE: this seems to have changed from -7ㅇ to -ㅂㄴ at some point from what I've heard,
+# but the dictionary I have to work from uses -ㅂㄴ for something useful so I can't change
+# it until I'm more confident about what the proper stroke should be for both. -7ㅇ is
+# delete instead of backspace in the newer references I've seen.
+UNDO_STROKE_STENO = '-7ㅇ'
 
 # ORTHOGRAPHY_RULES defines language specific spelling patterns for
 # suffixes as an array of Python regex entries for input and output.
@@ -50,7 +59,7 @@ ORTHOGRAPHY_WORDLIST = None
 
 # KEYMAPS defines the default mappings used for the various different
 # supported machines. This system uses more keys than most machines
-# for western stenography and by default won't be configured here.
+# for western stenography which by default won't be configured here.
 KEYMAPS = {
     'Keyboard': {
         '1-': '1',
@@ -99,13 +108,13 @@ KEYMAPS = {
         '-ㅁ': ';',
 
         'arpeggiate': 'space',
-        'no-op' : ()
+        'no-op': ()
     }
 }
 
 # DICTIONARIES_ROOT and DEFAULT_DICTIONARIES define the location of
 # the dictionaries included to be used with this system by default.
-DICTIONARIES_ROOT = 'asset:plover_korean_cas:dictionaries'
+DICTIONARIES_ROOT = 'asset:plover_korean:dictionaries_cas'
 DEFAULT_DICTIONARIES = (
     'main.json',
     'user.json'

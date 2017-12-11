@@ -1,17 +1,17 @@
 =================
-Plover Korean CAS
+Plover Korean
 =================
-Korean system for `Plover <https://github.com/openstenoproject/plover>`_ based on the CAS layout.
+Korean systems for `Plover <https://github.com/openstenoproject/plover>`_.
 
-The dictionary and documentation are still under development.
+The dictionaries and documentation are still under development. The work will mainly be focused on a system based off of the CAS layout but work based on the Sorizava layout is a future goal.
 
 How to Install
 ==============
 TODO: link to plover downloads and how to use the plugin manager
 
-System Description
+System Overview - CAS-based Layout
 ==================
-Following this is a brief description of the system implemented by this plugin. It will cover the main areas for syllable representation for Korean on this layout as well as some useful concepts outside of the spelling itself.
+Following this is a brief description of the system based on the CAS layout. It will cover the main areas for syllable representation for Korean on this layout as well as some useful concepts outside of the spelling itself.
 
 Key Layout
 ----------
@@ -121,3 +121,7 @@ English Letters
 You can fingerspell any letter in the English alphabet with this system.
 
 TODO: list the cases out
+
+System Overview - Sorizava-based Layout
+==================
+TODO: Everything
