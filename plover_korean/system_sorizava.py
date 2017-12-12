@@ -64,71 +64,67 @@ ORTHOGRAPHY_WORDLIST = None
 # KEYMAPS defines the default mappings used for the various different
 # supported machines. This system uses more keys than most machines
 # for western stenography which by default won't be configured here.
-# It also has more keys than a normal keyboard, but some default layout
-# needs to exist. You can rebind to not have a number row if needed.
 KEYMAPS = {
     'Keyboard': {
-        'ㅊ-': 'q',
-        'ㅌ-': 'w',
-        'ㅋ-': 'e',
-        'ㅂ-': 'r',
-        'ㅍ-': 't',
+        'ㅊ-': '1',
+        'ㅌ-': '2',
+        'ㅋ-': '3',
+        'ㅂ-': '4',
+        'ㅍ-': '5',
 
-        'ㅅ-': 'a',
-        'ㄷ-': 's',
-        'ㅈ-': 'd',
-        'ㄱ-': 'f',
-        'ㅋ-': 'g',
+        'ㅅ-': 'q',
+        'ㄷ-': 'w',
+        'ㅈ-': 'e',
+        'ㄱ-': 'r',
+        'ㅋ-': 't',
 
-        'ㅁ-': 'z',
-        'ㄹ-': 'x',
-        'ㄴ-': 'c',
-        'ㅎ-': 'v',
-        'ㅢ-': 'b',
+        'ㅁ-': 'a',
+        'ㄹ-': 's',
+        'ㄴ-': 'd',
+        'ㅎ-': 'f',
+        'ㅢ-': 'g',
 
-        # No reasonable defaults for the vowel keys on a standard keyboard.
-        # This system requires something like an Ergodox in practice.
-        'ㅗ-': '',
-        'ㅏ-': '',
-        'ㅜ-': '',
+        'ㅗ-': 'x',
+        'ㅏ-': 'c',
+        'ㅜ-': 'v',
 
 
-        '-ㅡ': '',
-        '-ㅓ': '',
-        '-ㅣ': '',
+        '-ㅡ': 'n',
+        '-ㅓ': 'm',
+        '-ㅣ': ',',
 
-        '-ㄲ': 'y',
-        '-ㅎ': 'u',
-        '-ㅌ': 'i',
-        '-ㅊ': 'o',
-        '-ㅍ': 'p',
+        '-ㄲ': '6',
+        '-ㅎ': '7',
+        '-ㅌ': '8',
+        '-ㅊ': '9',
+        '-ㅍ': '0',
 
-        '-ㄱ': 'h',
-        '-ㄴ': 'j',
-        '-ㄹ': 'k',
-        '-ㅅ': 'l',
-        '-ㅂ': ';',
+        '-ㄱ': 'y',
+        '-ㄴ': 'u',
+        '-ㄹ': 'i',
+        '-ㅅ': 'o',
+        '-ㅂ': 'p',
 
-        '-ㅆ': 'n',
-        '-ㅇ': 'm',
-        '-ㅁ': ',',
-        '-ㄷ': '.',
-        '-ㅈ': '/',
+        '-ㅆ': 'h',
+        '-ㅇ': 'j',
+        '-ㅁ': 'k',
+        '-ㄷ': 'l',
+        '-ㅈ': ';',
 
-        '-1': '1',
-        '-2': '2',
-        '-3': '3',
-        '-4': '4',
-        '-5': '5',
-        '-6': '6',
-        '-7': '7',
-        '-8': '8',
-        '-9': '9',
-        '-0': '0',
+        '-1': 'F1',
+        '-2': 'F2',
+        '-3': 'F3',
+        '-4': 'F4',
+        '-5': 'F5',
+        '-6': 'F6',
+        '-7': 'F7',
+        '-8': 'F8',
+        '-9': 'F9',
+        '-0': 'F10',
 
         'SPACE': 'space',
 
-        'arpeggiate': '',
+        'arpeggiate': 'b',
         'no-op': ()
     }
 }
