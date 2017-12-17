@@ -111,8 +111,7 @@ KEYMAPS: dict = {
 # DICTIONARIES_ROOT and DEFAULT_DICTIONARIES define the location of
 # the dictionaries included to be used with this system by default.
 # The dictionaries listed earlier have priority when used.
-DICTIONARIES_ROOT: str = 'asset:plover_korean:dictionaries_cas'
-DEFAULT_DICTIONARIES: tuple = (
-    'user.json',
-    'main.json'
-)
+DICTIONARIES_ROOT: str = 'asset:plover_korean:dictionaries'
+DEFAULT_DICTIONARIES: list = [
+    'kr_cas_main.json'
+]

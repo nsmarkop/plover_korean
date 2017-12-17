@@ -2,6 +2,8 @@
 Stenography model for Korean based on the 47-key Sorizava layout.
 '''
 
+# TODO: Figure out how to handle the duplicate ㅋ keys, or if it's even needed.
+
 # KEYS defines the stenography system. Organized by rows and hands.
 # Consonant groups don't internally follow a steno order when constructing words.
 KEYS: tuple = (
@@ -132,8 +134,7 @@ KEYMAPS: dict = {
 # DICTIONARIES_ROOT and DEFAULT_DICTIONARIES define the location of
 # the dictionaries included to be used with this system by default.
 # The dictionaries listed earlier have priority when used.
-DICTIONARIES_ROOT: str = 'asset:plover_korean:dictionaries_sorizava'
-DEFAULT_DICTIONARIES: tuple = (
-    'user.json',
-    'main.json'
-)
+DICTIONARIES_ROOT: str = 'asset:plover_korean:dictionaries'
+DEFAULT_DICTIONARIES: list = [
+    'kr_sorizava_main.json'
+]
