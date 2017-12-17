@@ -1,10 +1,10 @@
 '''
-Stenography model for Korean based on the Sorizava / 소리자바 layout.
+Stenography model for Korean based on the 47-key Sorizava layout.
 '''
 
 # KEYS defines the stenography system. Organized by rows and hands.
 # Consonant groups don't internally follow a steno order when constructing words.
-KEYS = (
+KEYS: tuple = (
     # 초성 - Initial consonant (except ㅢ as an out of place vowel)
     'ㅊ-', 'ㅌ-', 'ㅋ-', 'ㅂ-', 'ㅍ-',
     'ㅅ-', 'ㄷ-', 'ㅈ-', 'ㄱ-', 'ㅋ-',
@@ -22,8 +22,8 @@ KEYS = (
     # Numbers
     '-1', '-2', '-3', '-4', '-5', '-6', '-7', '-8', '-9', '-0',
 
-    # Space key - this isn't actually in any strokes but it's needed for this system
-    # as all spacing is either defined in the dictionary entries or explicit.
+    # Space key - this isn't actually in any strokes but all spacing is either
+    # defined in the dictionary entries or explicit with the use of a separate key.
     'SPACE'
 )
 
@@ -31,7 +31,7 @@ KEYS = (
 # These are usually the keys that separate the hands so the resulting
 # stroke only includes an actual hyphen if it it skips these keys
 # completely while using either both hands or just the right hand.
-IMPLICIT_HYPHEN_KEYS = (
+IMPLICIT_HYPHEN_KEYS: tuple = (
     'ㅢ-',
     'ㅗ-', 'ㅏ-', 'ㅜ-',
     '-ㅡ', '-ㅓ', '-ㅣ'
@@ -39,32 +39,32 @@ IMPLICIT_HYPHEN_KEYS = (
 
 # SUFFIX_KEYS defines singular keys that can add suffixes to existing entries.
 # The version with the suffix needs to be defined in a dictionary.
-SUFFIX_KEYS = ()
+SUFFIX_KEYS: tuple = ()
 
 # NUMBERS is used to define the mapping from normal keys into what they
 # should be in numbers for the current stroke when NUMBER_KEY is pressed.
 # This system has explicit number keys, so there is no need for this concept.
-NUMBER_KEY = ''
-NUMBERS = {}
+NUMBER_KEY: str = ''
+NUMBERS: dict = {}
 
 # UNDO_STROKE_STENO is what input causes the previous stroke to be undone.
 # The stroke for undo can be overridden or alternatives can be made in a dictionary.
-UNDO_STROKE_STENO = ''
+UNDO_STROKE_STENO: str = ''
 
 # ORTHOGRAPHY_RULES defines language specific spelling patterns for
-# suffixes as an array of Python regex entries for input and output.
-ORTHOGRAPHY_RULES = []
+# suffixes as a list of Python regex entries for input and output.
+ORTHOGRAPHY_RULES: list = []
 # ORTHOGRAPHY_RULES_ALIASES defines other ways a suffix can be written.
-ORTHOGRAPHY_RULES_ALIASES = {}
+ORTHOGRAPHY_RULES_ALIASES: dict = {}
 # ORTHOGRAPHY_WORDLIST defines a file containing... set words that are the
 # result of suffixes I guess? Seems to be a shortcut way of not needing to
 # actually evaluate the the orthography rules if it is not needed.
-ORTHOGRAPHY_WORDLIST = None
+ORTHOGRAPHY_WORDLIST: str = None
 
 # KEYMAPS defines the default mappings used for the various different
 # supported machines. This system uses more keys than most machines
 # for western stenography which by default won't be configured here.
-KEYMAPS = {
+KEYMAPS: dict = {
     'Keyboard': {
         'ㅊ-': '1',
         'ㅌ-': '2',
@@ -131,8 +131,9 @@ KEYMAPS = {
 
 # DICTIONARIES_ROOT and DEFAULT_DICTIONARIES define the location of
 # the dictionaries included to be used with this system by default.
-DICTIONARIES_ROOT = 'asset:plover_korean:dictionaries_sorizava'
-DEFAULT_DICTIONARIES = (
-    'main.json',
-    'user.json'
+# The dictionaries listed earlier have priority when used.
+DICTIONARIES_ROOT: str = 'asset:plover_korean:dictionaries_sorizava'
+DEFAULT_DICTIONARIES: tuple = (
+    'user.json',
+    'main.json'
 )
