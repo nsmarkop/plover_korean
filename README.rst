@@ -9,7 +9,7 @@ Currently contains:
 - System based on the CAS layout with basic functionality.
 - System based on the Sorizava layout. Only available when installed from source with setup.cfg modifications for now as I'm not focusing on it.
 
-How to Install
+Installation
 ==============
 
 :emphasis:`This plugin has not been released on PyPI yet, so locally installing from source is currently the only option.`
@@ -18,9 +18,11 @@ Download the latest version of Plover for your operating system from the `releas
 
 Once installed, navigate to the Plugin Manager in the main Plover window. From there you should see the "plover-korean" plugin which you can select and install to use after restarting Plover. The same method can be used for updating and uninstalling the plugin.
 
-If you run Plover from source you can alternatively install it directly with pip or you can check out of copy of this repository and install it locally with pip like so::
+If you run Plover from source you can alternatively install it directly with pip or you can check out a copy of this repository and install it locally with pip like so::
 
     pip install -e /path/to/repo
+
+If you have issues with character misalignment in places like the Paper Tape in the Plover GUI try installing `Nanum Gothic Coding <https://fonts.google.com/earlyaccess#Nanum+Gothic+Coding>`__, a monospaced sans-serif Korean font, and setting Plover's font to that where possible. The majority of monospaced fonts do not have CJK language support which is why this issue comes up for things relying on monospaced plain text display.
 
 Dictionaries
 ============
