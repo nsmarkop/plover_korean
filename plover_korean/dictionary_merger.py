@@ -42,5 +42,6 @@ def merge_dictionaries(dictionaries: list, output_filename: str):
         json.dump(output_data, output_file,
                   sort_keys=True, indent=4, ensure_ascii=False)
 
-merge_dictionaries(DICTIONARIES_CAS, PREFIX_CAS + 'main.json')
-merge_dictionaries(DICTIONARIES_SORIZAVA, PREFIX_SORIZAVA + 'main.json')
+if __name__ == '__main__':
+    merge_dictionaries(DICTIONARIES_CAS, PREFIX_CAS + 'main.json')
+    merge_dictionaries(DICTIONARIES_SORIZAVA, PREFIX_SORIZAVA + 'main.json')
