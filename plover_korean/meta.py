@@ -24,14 +24,6 @@ ParticleRuleInfo = namedtuple(
     ]
 )
 
-def initialize_particle_action(context):
-    action = context.new_action()
-    action.prev_attach = True
-
-    last_word = context.last_action.word or ''
-
-    return (action, last_word)
-
 def parse_particle_args(meta_args: str) -> ParticleRuleInfo:
     args_list = meta_args.split(',', 2)
 
@@ -57,10 +49,12 @@ def parse_particle_args(meta_args: str) -> ParticleRuleInfo:
     )
 
 def apply_particle_generic(context, meta_args: str):
-    (action, last_word) = initialize_particle_action(context)
+    action = context.new_action()
+    action.prev_attach = True
 
     rule_info = parse_particle_args(meta_args)
 
+    last_word = context.last_action.word or ''
     last_syllable = ''
     if len(last_word) >= 1:
         last_syllable = last_word[-1]
@@ -79,8 +73,11 @@ def apply_particle_generic(context, meta_args: str):
     else:
         action.text = f'{rule_info.consonant}({rule_info.vowel})'
 
-    # For now, build into every particle that a space follows it
+    # For now, build into every particle that a space follows it and it attaches
+    # to the next word (the last part is to be consistent with the workaround
+    # of Plover's automatic spacing done elsewhere)
     action.text = action.text + ' '
+    action.next_attach = True
 
     return action
 
