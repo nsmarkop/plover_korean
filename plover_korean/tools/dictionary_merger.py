@@ -4,21 +4,20 @@ Used for merging dictionaries into a single dictionary.
 
 import os
 import json
+from utilities import (create_plover_dictionary,
+                       MODULE_DIR, FOLDER_DICT_FINAL, FOLDER_DICT_PARTIAL,
+                       PREFIX_CAS, PREFIX_SORIZAVA)
 
-MODULE_DIR = 'plover_korean'
-FOLDER_PARTIAL = 'dictionaries_partial'
-FOLDER_FINAL = 'dictionaries'
 
-PREFIX_CAS = 'kr_cas_'
 DICTIONARIES_CAS = [
     PREFIX_CAS + 'syllables.json',
     PREFIX_CAS + 'english_fingerspelling.json',
     PREFIX_CAS + 'symbols.json',
     PREFIX_CAS + 'briefs.json',
-    PREFIX_CAS + 'fundamental.json'
+    PREFIX_CAS + 'fundamental.json',
+    PREFIX_CAS + 'single_keys.json'
 ]
 
-PREFIX_SORIZAVA = 'kr_sorizava_'
 DICTIONARIES_SORIZAVA = [
 
 ]
@@ -32,15 +31,13 @@ def merge_dictionaries(dictionaries: list, output_filename: str):
     # Order here matters! The earlier dictionaries will have entries overwritten by
     # the later dictionaries if duplicate entries are found. This is intentional.
     for dictionary in dictionaries:
-        input_path = os.path.join(MODULE_DIR, FOLDER_PARTIAL, dictionary)
+        input_path = os.path.join(MODULE_DIR, FOLDER_DICT_PARTIAL, dictionary)
         with open(input_path, 'r', encoding='utf8') as data_file:
             data = json.load(data_file)
             output_data = {**output_data, **data}
 
-    output_path = os.path.join(MODULE_DIR, FOLDER_FINAL, output_filename)
-    with open(output_path, 'w', encoding='utf8') as output_file:
-        json.dump(output_data, output_file,
-                  sort_keys=True, indent=4, ensure_ascii=False)
+    output_path = os.path.join(MODULE_DIR, FOLDER_DICT_FINAL, output_filename)
+    create_plover_dictionary(output_path, output_data)
 
 if __name__ == '__main__':
     merge_dictionaries(DICTIONARIES_CAS, PREFIX_CAS + 'main.json')
