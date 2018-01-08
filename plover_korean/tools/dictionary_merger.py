@@ -4,9 +4,10 @@ Used for merging dictionaries into a single dictionary.
 
 import os
 import json
-from utilities import (create_plover_dictionary,
-                       MODULE_DIR, FOLDER_DICT_FINAL, FOLDER_DICT_PARTIAL,
-                       PREFIX_CAS, PREFIX_SORIZAVA)
+from plover_korean.tools.utilities import (create_plover_dictionary,
+                                           MODULE_DIR, FOLDER_DICT_FINAL,
+                                           FOLDER_DICT_PARTIAL,
+                                           PREFIX_CAS, PREFIX_SORIZAVA)
 
 
 DICTIONARIES_CAS = [
@@ -41,4 +42,4 @@ def merge_dictionaries(dictionaries: list, output_filename: str):
 
 if __name__ == '__main__':
     merge_dictionaries(DICTIONARIES_CAS, PREFIX_CAS + 'main.json')
-    merge_dictionaries(DICTIONARIES_SORIZAVA, PREFIX_SORIZAVA + 'main.json')
+    # merge_dictionaries(DICTIONARIES_SORIZAVA, PREFIX_SORIZAVA + 'main.json')

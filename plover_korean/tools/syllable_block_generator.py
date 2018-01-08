@@ -4,9 +4,9 @@ Generator for all syllable block combinations.
 
 import os
 import hgtk
-from utilities import (create_plover_dictionary,
-                       MODULE_DIR, FOLDER_DICT_PARTIAL,
-                       PREFIX_CAS, PREFIX_SORIZAVA)
+from plover_korean.tools.utilities import (create_plover_dictionary,
+                                           MODULE_DIR, FOLDER_DICT_PARTIAL,
+                                           PREFIX_CAS, PREFIX_SORIZAVA)
 
 
 SYLLABLE_DICT_FILENAME = 'syllables.json'
@@ -190,4 +190,4 @@ def generate_syllable_blocks(stroke_definitions: dict, filename: str):
 
 if __name__ == '__main__':
     generate_syllable_blocks(STROKES_CAS, PREFIX_CAS + SYLLABLE_DICT_FILENAME)
-    generate_syllable_blocks(STROKES_SORIZAVA, PREFIX_SORIZAVA + SYLLABLE_DICT_FILENAME)
+    # generate_syllable_blocks(STROKES_SORIZAVA, PREFIX_SORIZAVA + SYLLABLE_DICT_FILENAME)
