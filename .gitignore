@@ -102,7 +102,3 @@ ENV/
 
 # Visual Studio Code
 .vscode/
-
-# pipenv - hiding Pipfile because it only contains pylint!
-Pipfile
-Pipfile.lock
