@@ -186,10 +186,13 @@ kr_particle_neun | ~는/은
 kr_particle_ga   | ~가/이
 kr_particle_reul | ~를/을
 kr_particle_da   | ~다/이다
+kr_particle_ra   | ~라/이라
 kr_particle_ya   | ~야/아
 kr_particle_wa   | ~와/과
 kr_particle_rang | ~랑/이랑
+kr_particle_na   | ~나/이나
 kr_particle_ro   | ~로/으로
+kr_particle_myeo | ~며/이며
 
 If support for a particular variable particle is not currently implemented, [**please open an issue on GitHub for support to be added**](https://github.com/nsmarkop/plover_korean/issues). However, there is one additional meta plugin that can be used for when this occurs: "kr_particle_generic". It has three plugin arguments:
 

@@ -12,12 +12,15 @@ RULE_PARTICLE_GA = '가,이'
 RULE_PARTICLE_REUL = '를,을'
 
 RULE_PARTICLE_DA = '다,이다'
+RULE_PARTICLE_RA = '라,이라'
 RULE_PARTICLE_YA = '야,아'
 
 RULE_PARTICLE_WA = '와,과'
 RULE_PARTICLE_RANG = '랑,이랑'
+RULE_PARTICLE_NA = "나,이나"
 
 RULE_PARTICLE_RO = '로,으로,ㄹ'
+RULE_PARTICLE_MYEO = '며,이며'
 
 ParticleRuleInfo = namedtuple(
     'ParticleRuleInfo', [
@@ -188,6 +191,20 @@ def apply_particle_da(context, _):
 
     return apply_particle_generic(context, RULE_PARTICLE_DA)
 
+def apply_particle_ra(context, _):
+    '''
+    Attaches the contraction of 라서 to the last word in the context
+    to be executed as the next action.
+
+    :param context: The context of actions in Plover.
+    :type context: plover.formatting._Context
+
+    :return: The next action for Plover to perform.
+    :rtype: plover.formatting._Action
+    '''
+
+    return apply_particle_generic(context, RULE_PARTICLE_RA)
+
 def apply_particle_ya(context, _):
     '''
     Attaches the vocative name particle to the last word in the context
@@ -230,6 +247,20 @@ def apply_particle_rang(context, _):
 
     return apply_particle_generic(context, RULE_PARTICLE_RANG)
 
+def apply_particle_na(context, _):
+    '''
+    Attaches the 'or' particle to the last word in the context
+    to be executed as the next action.
+
+    :param context: The context of actions in Plover.
+    :type context: plover.formatting._Context
+
+    :return: The next action for Plover to perform.
+    :rtype: plover.formatting._Action
+    '''
+
+    return apply_particle_generic(context, RULE_PARTICLE_NA)
+
 def apply_particle_ro(context, _):
     '''
     Attaches the direction particle to the last word in the context
@@ -243,3 +274,17 @@ def apply_particle_ro(context, _):
     '''
 
     return apply_particle_generic(context, RULE_PARTICLE_RO)
+
+def apply_particle_myeo(context, _):
+    '''
+    Attaches the quasi 'and' / same time particle to the last word in the context
+    to be executed as the next action.
+
+    :param context: The context of actions in Plover.
+    :type context: plover.formatting._Context
+
+    :return: The next action for Plover to perform.
+    :rtype: plover.formatting._Action
+    '''
+
+    return apply_particle_generic(context, RULE_PARTICLE_MYEO)

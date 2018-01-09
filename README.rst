@@ -349,13 +349,19 @@ with that support that can be used:
 +------------------+----------+
 | kr_particle_da   | ~다/이다 |
 +------------------+----------+
+| kr_particle_ra   | ~라/이라 |
++------------------+----------+
 | kr_particle_ya   | ~야/아   |
 +------------------+----------+
 | kr_particle_wa   | ~와/과   |
 +------------------+----------+
 | kr_particle_rang | ~랑/이랑 |
 +------------------+----------+
+| kr_particle_na   | ~나/이나 |
++------------------+----------+
 | kr_particle_ro   | ~로/으로 |
++------------------+----------+
+| kr_particle_myeo | ~며/이며 |
 +------------------+----------+
 
 If support for a particular variable particle is not currently
