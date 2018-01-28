@@ -9,8 +9,8 @@ MODULE_DIR = 'plover_korean'
 FOLDER_DICT_FINAL = 'dictionaries'
 FOLDER_DICT_PARTIAL = 'dictionaries_partial'
 
-PREFIX_CAS = 'kr_cas_'
-PREFIX_SORIZAVA = 'kr_sorizava_'
+PREFIX_CAS = 'ko_cas_'
+PREFIX_SORIZAVA = 'ko_sorizava_'
 
 def create_plover_dictionary(filepath: str, data: dict):
     '''

@@ -136,5 +136,5 @@ KEYMAPS: dict = {
 # The dictionaries listed earlier have priority when used.
 DICTIONARIES_ROOT: str = 'asset:plover_korean:dictionaries'
 DEFAULT_DICTIONARIES: list = [
-    'kr_sorizava_main.json'
+    'ko_sorizava_main.json'
 ]

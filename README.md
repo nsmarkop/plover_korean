@@ -182,37 +182,37 @@ While many particles are always the same when attached to words, some change the
 
 Meta Plugin Name | Concept
 ---------------- | ----------
-kr_particle_neun | ~는/은
-kr_particle_ga   | ~가/이
-kr_particle_reul | ~를/을
-kr_particle_da   | ~다/이다
-kr_particle_ra   | ~라/이라
-kr_particle_ya   | ~야/아
-kr_particle_wa   | ~와/과
-kr_particle_rang | ~랑/이랑
-kr_particle_na   | ~나/이나
-kr_particle_ro   | ~로/으로
-kr_particle_myeo | ~며/이며
+ko_particle_neun | ~는/은
+ko_particle_ga   | ~가/이
+ko_particle_reul | ~를/을
+ko_particle_da   | ~다/이다
+ko_particle_ra   | ~라/이라
+ko_particle_ya   | ~야/아
+ko_particle_wa   | ~와/과
+ko_particle_rang | ~랑/이랑
+ko_particle_na   | ~나/이나
+ko_particle_ro   | ~로/으로
+ko_particle_myeo | ~며/이며
 
-If support for a particular variable particle is not currently implemented, [**please open an issue on GitHub for support to be added**](https://github.com/nsmarkop/plover_korean/issues). However, there is one additional meta plugin that can be used for when this occurs: "kr_particle_generic". It has three plugin arguments:
+If support for a particular variable particle is not currently implemented, [**please open an issue on GitHub for support to be added**](https://github.com/nsmarkop/plover_korean/issues). However, there is one additional meta plugin that can be used for when this occurs: "ko_particle_generic". It has three plugin arguments:
 
 1. The particle to be used for words ending in vowels.
 2. The particle to be used for words ending in consonants.
 3. (optional) The final consonant of words where the consonant case should be treated as the vowel case.
 
-For example, an entry that replicates the "kr_particle_neun" functionality would be:
+For example, an entry that replicates the "ko_particle_neun" functionality would be:
 
 ``` json
 {
-    "ㄴㅣㄱ": "{:kr_particle_generic:는,은}"
+    "ㄴㅣㄱ": "{:ko_particle_generic:는,은}"
 }
 ```
 
-An entry that replicates the "kr_particle_ro" functionality would be:
+An entry that replicates the "ko_particle_ro" functionality would be:
 
 ``` json
 {
-    "ㄴㅣㄱ": "{:kr_particle_generic:로,으로,ㄹ}"
+    "ㄴㅣㄱ": "{:ko_particle_generic:로,으로,ㄹ}"
 }
 ```
 
