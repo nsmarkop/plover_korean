@@ -3,6 +3,8 @@ Meta plugins for Korean support in Plover.
 '''
 
 from collections import namedtuple
+
+from plover.formatting import _Context, _Action
 import plover_korean.hangeul as hangeul
 
 
@@ -43,10 +45,8 @@ def parse_particle_args(particle_info: str) -> ParticleRuleInfo:
                           Comma-delimited string format corresponding to ParticleRuleInfo
                           like 'vowel,consonant,except_consonant'. Both 'vowel' and
                           'consonant' must be provided.
-    :type particle_info: str
 
     :return: The parsed particle rule info if possible to parse.
-    :rtype: ParticleRuleInfo
 
     :raises ValueError: Unable to parse the provided particle information.
     '''
@@ -75,7 +75,7 @@ def parse_particle_args(particle_info: str) -> ParticleRuleInfo:
         except_consonant = ''
 
     if not vowel and not consonant:
-        raise ValueError('Both a vowel and consonant particle must be provided.')
+        raise ValueError('Both a vowel and consonant particle must be provided')
 
     return ParticleRuleInfo(
         vowel=vowel,
@@ -83,39 +83,33 @@ def parse_particle_args(particle_info: str) -> ParticleRuleInfo:
         except_consonant=except_consonant
     )
 
-def format_unresolved_particle(rule_info: ParticleRuleInfo):
+def format_unresolved_particle(rule_info: ParticleRuleInfo) -> str:
     '''
     When a choice of one particle cannot be made, formats the choices for output.
 
     :param rule_info: The particle rule info in use.
-    :type rule_info: ParticleRuleInfo
 
     :return: Formatted string for output.
-    :rtype: str
     '''
 
     return f'{rule_info.consonant}({rule_info.vowel})'
 
-def apply_particle_generic(context, meta_args: str):
+def apply_particle_generic(context: _Context, args: str) -> _Action:
     '''
     Attaches the provided generic particle to the last word in the context
     to be executed as the next action.
 
     :param context: The context of actions in Plover.
-    :type context: plover.formatting._Context
-
-    :param meta_args: The arguments containing the generic particle information.
-                      Comma-delimited string format corresponding to ParticleRuleInfo
-                      like 'vowel,consonant,except_consonant'. Both 'vowel' and
-                      'consonant' must be provided.
-    :type meta_args: str
+    :param args: The arguments containing the generic particle information.
+                 Comma-delimited string format corresponding to ParticleRuleInfo
+                 like 'vowel,consonant,except_consonant'. Both 'vowel' and
+                 'consonant' must be provided.
 
     :return: The next action for Plover to perform.
-    :rtype: plover.formatting._Action
     '''
 
     try:
-        rule_info = parse_particle_args(meta_args)
+        rule_info = parse_particle_args(args)
     except ValueError:
         return context.new_action()
 
@@ -135,156 +129,145 @@ def apply_particle_generic(context, meta_args: str):
 
     return action
 
-def apply_particle_neun(context, _):
+def apply_particle_neun(context: _Context, args: str) -> _Action:
     '''
     Attaches the topic particle to the last word in the context
     to be executed as the next action.
 
     :param context: The context of actions in Plover.
-    :type context: plover.formatting._Context
+    :param args: Arguments provided to the meta.
 
     :return: The next action for Plover to perform.
-    :rtype: plover.formatting._Action
     '''
 
     return apply_particle_generic(context, RULE_PARTICLE_NEUN)
 
-def apply_particle_ga(context, _):
+def apply_particle_ga(context: _Context, args: str) -> _Action:
     '''
     Attaches the subject particle to the last word in the context
     to be executed as the next action.
 
     :param context: The context of actions in Plover.
-    :type context: plover.formatting._Context
+    :param args: Arguments provided to the meta.
 
     :return: The next action for Plover to perform.
-    :rtype: plover.formatting._Action
     '''
 
     return apply_particle_generic(context, RULE_PARTICLE_GA)
 
-def apply_particle_reul(context, _):
+def apply_particle_reul(context: _Context, args: str) -> _Action:
     '''
     Attaches the object particle to the last word in the context
     to be executed as the next action.
 
     :param context: The context of actions in Plover.
-    :type context: plover.formatting._Context
+    :param args: Arguments provided to the meta.
 
     :return: The next action for Plover to perform.
-    :rtype: plover.formatting._Action
     '''
 
     return apply_particle_generic(context, RULE_PARTICLE_REUL)
 
-def apply_particle_da(context, _):
+def apply_particle_da(context: _Context, args: str) -> _Action:
     '''
     Attaches the verb / copula particle to the last word in the context
     to be executed as the next action.
 
     :param context: The context of actions in Plover.
-    :type context: plover.formatting._Context
+    :param args: Arguments provided to the meta.
 
     :return: The next action for Plover to perform.
-    :rtype: plover.formatting._Action
     '''
 
     return apply_particle_generic(context, RULE_PARTICLE_DA)
 
-def apply_particle_ra(context, _):
+def apply_particle_ra(context: _Context, args: str) -> _Action:
     '''
     Attaches the contraction of 라서 to the last word in the context
     to be executed as the next action.
 
     :param context: The context of actions in Plover.
-    :type context: plover.formatting._Context
+    :param args: Arguments provided to the meta.
 
     :return: The next action for Plover to perform.
-    :rtype: plover.formatting._Action
     '''
 
     return apply_particle_generic(context, RULE_PARTICLE_RA)
 
-def apply_particle_ya(context, _):
+def apply_particle_ya(context: _Context, args: str) -> _Action:
     '''
     Attaches the vocative name particle to the last word in the context
     to be executed as the next action.
 
     :param context: The context of actions in Plover.
-    :type context: plover.formatting._Context
+    :param args: Arguments provided to the meta.
 
     :return: The next action for Plover to perform.
-    :rtype: plover.formatting._Action
     '''
 
     return apply_particle_generic(context, RULE_PARTICLE_YA)
 
-def apply_particle_wa(context, _):
+def apply_particle_wa(context: _Context, args: str) -> _Action:
     '''
     Attaches the formal 'and' particle to the last word in the context
     to be executed as the next action.
 
     :param context: The context of actions in Plover.
-    :type context: plover.formatting._Context
+    :param args: Arguments provided to the meta.
 
     :return: The next action for Plover to perform.
-    :rtype: plover.formatting._Action
     '''
 
     return apply_particle_generic(context, RULE_PARTICLE_WA)
 
-def apply_particle_rang(context, _):
+def apply_particle_rang(context: _Context, args: str) -> _Action:
     '''
     Attaches the informal 'and' particle to the last word in the context
     to be executed as the next action.
 
     :param context: The context of actions in Plover.
-    :type context: plover.formatting._Context
+    :param args: Arguments provided to the meta.
 
     :return: The next action for Plover to perform.
-    :rtype: plover.formatting._Action
     '''
 
     return apply_particle_generic(context, RULE_PARTICLE_RANG)
 
-def apply_particle_na(context, _):
+def apply_particle_na(context: _Context, args: str) -> _Action:
     '''
     Attaches the 'or' particle to the last word in the context
     to be executed as the next action.
 
     :param context: The context of actions in Plover.
-    :type context: plover.formatting._Context
+    :param args: Arguments provided to the meta.
 
     :return: The next action for Plover to perform.
-    :rtype: plover.formatting._Action
     '''
 
     return apply_particle_generic(context, RULE_PARTICLE_NA)
 
-def apply_particle_ro(context, _):
+def apply_particle_ro(context: _Context, args: str) -> _Action:
     '''
     Attaches the direction particle to the last word in the context
     to be executed as the next action.
 
     :param context: The context of actions in Plover.
-    :type context: plover.formatting._Context
+    :param args: Arguments provided to the meta.
 
     :return: The next action for Plover to perform.
-    :rtype: plover.formatting._Action
     '''
 
     return apply_particle_generic(context, RULE_PARTICLE_RO)
 
-def apply_particle_myeo(context, _):
+def apply_particle_myeo(context: _Context, args: str) -> _Action:
     '''
     Attaches the quasi 'and' / same time particle to the last word in the context
     to be executed as the next action.
 
     :param context: The context of actions in Plover.
-    :type context: plover.formatting._Context
+    :param args: Arguments provided to the meta.
 
     :return: The next action for Plover to perform.
-    :rtype: plover.formatting._Action
     '''
 
     return apply_particle_generic(context, RULE_PARTICLE_MYEO)
