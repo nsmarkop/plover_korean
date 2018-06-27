@@ -1,0 +1,24 @@
+[[source]]
+
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+name = "pypi"
+
+
+[packages]
+
+plover = ">=4.0.0.dev7"
+plover-python-dictionary = ">=0.5.9"
+hgtk = ">=0.1.1"
+
+
+[dev-packages]
+
+pylint = "*"
+pytest = "*"
+pyyaml = "*"
+
+
+[requires]
+
+python_version = "3.6"
