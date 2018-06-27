@@ -115,7 +115,6 @@ def apply_particle_generic(context: _Context, args: str) -> _Action:
 
     action = context.new_action()
     action.prev_attach = True
-    action.next_attach = True
 
     last_word = context.last_action.word or ''
 

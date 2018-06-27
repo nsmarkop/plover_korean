@@ -2,7 +2,6 @@
 Stenography model for Korean based on the 36-key CAS layout.
 '''
 
-# KEYS defines the stenography system. Organized by rows and hands.
 # Consonant groups don't internally follow a steno order when constructing words.
 KEYS: tuple = (
     '1-', '2-', '3-', '4-', '5-',
@@ -30,7 +29,7 @@ IMPLICIT_HYPHEN_KEYS: tuple = (
 )
 
 # SUFFIX_KEYS defines singular keys that can add suffixes to existing entries.
-# The version with the suffix needs to be defined in a dictionary.
+# The stroke to suffix translation mapping needs to be defined in a dictionary.
 SUFFIX_KEYS: tuple = ()
 
 # NUMBERS is used to define the mapping from normal keys into what they
@@ -50,13 +49,14 @@ ORTHOGRAPHY_RULES: list = []
 ORTHOGRAPHY_RULES_ALIASES: dict = {}
 # ORTHOGRAPHY_WORDLIST defines a file containing... set words that are the
 # result of suffixes I guess? Seems to be a shortcut way of not needing to
-# actually evaluate the the orthography rules if it is not needed.
+# actually evaluate the orthography rules if it is not needed.
 ORTHOGRAPHY_WORDLIST: str = None
 
-# KEYMAPS defines the default mappings used for the various different
-# supported machines. This system uses more keys than most machines
-# for western stenography which by default won't be configured here.
+# This system uses more keys than most machines for western stenography
+# which by default won't be configured here.
 KEYMAPS: dict = {
+    # This is mapped how the CAS keyboard arranges the QWERTY layer.
+    # For users of normal QWERTY, some keys should be re-mapped.
     'Keyboard': {
         '1-': '1',
         '2-': '2',
@@ -76,14 +76,14 @@ KEYMAPS: dict = {
         'ㅂ-': 'f',
         'ㄹ-': 'g',
 
-        'ㅗ-': 'x',
-        'ㅏ-': 'c',
-        'ㅜ-': 'v',
+        'ㅗ-': 'z',
+        'ㅏ-': 'x',
+        'ㅜ-': 'c',
 
 
-        '-*': 'n',
-        '-ㅓ': 'm',
-        '-ㅣ': ',',
+        '-*': 'v',
+        '-ㅓ': 'k',
+        '-ㅣ': 'n',
 
         '-6': '6',
         '-7': '7',
@@ -101,17 +101,14 @@ KEYMAPS: dict = {
         '-ㄴ': 'j',
         '-ㅅ': 'k',
         '-ㅈ': 'l',
-        '-ㅁ': ';',
+        '-ㅁ': 'm',
 
         'arpeggiate': 'space',
         'no-op': ()
     }
 }
 
-# DICTIONARIES_ROOT and DEFAULT_DICTIONARIES define the location of
-# the dictionaries included to be used with this system by default.
-# The dictionaries listed earlier have priority when used.
-DICTIONARIES_ROOT: str = 'asset:plover_korean:dictionaries'
+DICTIONARIES_ROOT: str = 'asset:plover_korean:cas/dictionaries'
 DEFAULT_DICTIONARIES: list = [
-    'ko_cas_main.json'
+    'ko_cas_main.py'
 ]
