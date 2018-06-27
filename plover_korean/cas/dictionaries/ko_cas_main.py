@@ -24,6 +24,9 @@ STROKE_REGEX = re.compile(r'''
     $
     ''', re.VERBOSE)
 
+# TODO: Consider adding a combo INITIAL / MEDIAL list for
+#       conjunction cases like 그리 = ㄱㄹㅣ and 그러 = ㄱㄹㅓ
+#       to make words like 그런, 그릴, etc.
 INITIAL = {
     # Base functionality
     'ㄱ': 'ㄱ',
