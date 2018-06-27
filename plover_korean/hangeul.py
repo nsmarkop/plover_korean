@@ -81,7 +81,7 @@ def ends_in_consonant(word: str) -> bool:
 
 def is_last_consonant(word: str, letter_to_match: str) -> bool:
     '''
-    Checks if the given word ennds in the provided consonant.
+    Checks if the given word ends in the provided consonant.
 
     :param word: The word to check.
     :param letter_to_match: The letter to check for as the last consonant.
