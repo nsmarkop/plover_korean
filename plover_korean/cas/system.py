@@ -19,7 +19,6 @@ KEYS: tuple = (
     '-ㅂ', '-ㄴ', '-ㅅ', '-ㅈ', '-ㅁ'
 )
 
-# IMPLICIT_HYPHEN_KEYS defines keys that are treated as implicit hyphens.
 # These are usually the keys that separate the hands so the resulting
 # stroke only includes an actual hyphen if it it skips these keys
 # completely while using either both hands or just the right hand.
@@ -28,27 +27,27 @@ IMPLICIT_HYPHEN_KEYS: tuple = (
     '-*', '-ㅓ', '-ㅣ'
 )
 
-# SUFFIX_KEYS defines singular keys that can add suffixes to existing entries.
+# Defines singular keys that can add suffixes to existing entries.
 # The stroke to suffix translation mapping needs to be defined in a dictionary.
 SUFFIX_KEYS: tuple = ()
 
-# NUMBERS is used to define the mapping from normal keys into what they
-# should be in numbers for the current stroke when NUMBER_KEY is pressed.
+# Defines the mapping from normal keys into what they should be in
+# numbers for the current stroke when NUMBER_KEY is pressed.
 # This system has explicit number keys, so there is no need for this concept.
 NUMBER_KEY: str = ''
 NUMBERS: dict = {}
 
-# UNDO_STROKE_STENO is what input causes the previous stroke to be undone.
+# Causes the previous stroke to be undone.
 # The stroke for undo can be overridden or alternatives can be made in a dictionary.
 UNDO_STROKE_STENO: str = '-ㅂㄴ'
 
-# ORTHOGRAPHY_RULES defines language specific spelling patterns for
-# suffixes as a list of Python regex entries for input and output.
+# Defines language specific spelling patterns for suffixes
+# as a list of Python regex entries for input and output.
 ORTHOGRAPHY_RULES: list = []
-# ORTHOGRAPHY_RULES_ALIASES defines other ways a suffix can be written.
+# Defines other ways a suffix can be written.
 ORTHOGRAPHY_RULES_ALIASES: dict = {}
-# ORTHOGRAPHY_WORDLIST defines a file containing... set words that are the
-# result of suffixes I guess? Seems to be a shortcut way of not needing to
+# Defines a file containing... set words that are the result of
+# suffixes I guess? Seems to be a shortcut way of not needing to
 # actually evaluate the orthography rules if it is not needed.
 ORTHOGRAPHY_WORDLIST: str = None
 
@@ -110,5 +109,6 @@ KEYMAPS: dict = {
 
 DICTIONARIES_ROOT: str = 'asset:plover_korean:cas/dictionaries'
 DEFAULT_DICTIONARIES: list = [
-    'ko_cas_main.py'
+    'ko_cas_numbers.py',
+    'ko_cas_syllables.py'
 ]
