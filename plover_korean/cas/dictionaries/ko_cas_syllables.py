@@ -3,26 +3,16 @@ Core functionality for the CAS-based Korean stenography system.
 '''
 
 from typing import Tuple, List
-import re
 
 import hgtk
 from plover.steno import normalize_stroke
 from plover.formatting import META_ATTACH_FLAG, META_START, META_END
+from plover_korean.cas.util import get_stroke_groups
 
 
 # No support for multi-stroke lookups in this dictionary
 LONGEST_KEY = 1
-
 OPERATOR_ATTACH = f'{META_START}{META_ATTACH_FLAG}{META_END}'
-STROKE_REGEX = re.compile(r'''
-    ^
-    (?P<number_start> [12345]*)
-    (?P<initial> [ㅎㅁㄱㅈㄴㄷㅇㅅㅂㄹ]*)
-    (?P<medial> [ㅗㅏㅜ\-*ㅓㅣ]*)
-    (?P<number_end> [67890]*)
-    (?P<final> [ㅎㅇㄹㄱㄷㅂㄴㅅㅈㅁ]*)
-    $
-    ''', re.VERBOSE)
 
 # TODO: Consider adding a combo INITIAL / MEDIAL list for
 #       conjunction cases like 그리 = ㄱㄹㅣ and 그러 = ㄱㄹㅓ
@@ -114,7 +104,7 @@ FINAL = {
     'ㅎㅂ': 'ㅍ',
     'ㅎ': 'ㅎ',
 
-    # Endings
+    # Conjugations
     'ㄷㄴ': 'ㄴ다',
     'ㅂㄴ': 'ㅂ니다',
     'ㅂㄴㅅㅈ': 'ㅆ습니다',
@@ -138,18 +128,10 @@ def lookup(strokes: Tuple[str]) -> str:
 
     if len(strokes) != LONGEST_KEY:
         raise KeyError()
+    initial, medial, final, numbers = get_stroke_groups(strokes[0])
 
-    # Process the stroke into logical groups for processing
-    result = STROKE_REGEX.match(strokes[0])
-    if result is None:
+    if numbers:
         raise KeyError()
-
-    stroke_groups = result.groupdict()
-    initial = stroke_groups.get('initial')
-    medial = stroke_groups.get('medial')
-    final = stroke_groups.get('final', '')
-    _numbers = (stroke_groups.get('number_start', [])
-                + stroke_groups.get('number_end', []))
 
     # Compose the output
     try:
@@ -165,7 +147,7 @@ def reverse_lookup(text: str) -> List[Tuple[str]]:
     Get the strokes that would result in the provided text.
 
     :param text: The text to look up strokes for.
-    :return: An list of stroke tuples. Empty list if nothing was found.
+    :return: A list of stroke tuples. Empty list if nothing was found.
     '''
 
     output = []
