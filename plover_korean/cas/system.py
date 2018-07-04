@@ -110,5 +110,5 @@ KEYMAPS: dict = {
 DICTIONARIES_ROOT: str = 'asset:plover_korean:cas/dictionaries'
 DEFAULT_DICTIONARIES: list = [
     'ko_cas_numbers.py',
-    'ko_cas_syllables.py'
+    'ko_cas_base.py'
 ]
