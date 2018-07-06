@@ -189,11 +189,10 @@ def reverse_lookup(text: str) -> List[Tuple[str]]:
 
     output = []
 
-    return output
     # TODO: Don't proceed further yet, still in progress.
     #       1ㅎ-ㅇ crashes the suggestions window
+    return output
 
-    # TODO: I get stroke delimiters in between each letter. Why?
     # Currently, can only look up single syllable block cases
     try:
         initial, medial, final = hgtk.letter.decompose(text)
@@ -220,7 +219,7 @@ def reverse_lookup(text: str) -> List[Tuple[str]]:
                     stroke.append(f'-{letter}')
                 break
 
-        output.append(normalize_stroke(stroke))
+        output.append((normalize_stroke(stroke),))
     except:
         output = []
 
