@@ -116,15 +116,14 @@ FINAL = {
     'ㅇㄹ': '울',
     'ㅇㅁ': '움',
     'ㄱㄴ': 'ㄴ가',
-    'ㄷㄴ': 'ㄴ다',
     'ㄱㄷㄴ': 'ㄴ다고',
     'ㄱㄴㅈ': 'ㄴ지',
-    'ㄴㅈ': 'ㄴ지',
     'ㄹㄷ': 'ㄹ 때',
-    'ㄹㅅ': 'ㄹ 수',
+    # TODO: This conflicts with 닔 type of syllables.
+    #       Need to make alternate rule?
+    # 'ㄹㅅ': 'ㄹ 수',
     'ㄹㅈ': 'ㄹ지',
     'ㄹㄱㅁ': 'ㄹ까',
-    'ㄹㄱ': 'ㄹ까',
     'ㄷㅂ': 'ㅂ다',
     'ㄱㅂ': 'ㅂ게',
     'ㅂㅅㅈ': 'ㅂ고',
@@ -158,10 +157,10 @@ FINAL = {
 
 def lookup(strokes: Tuple[str]) -> str:
     '''
-    Get the translation that the provided strokes would output.
+    Get the text that the provided strokes would output.
 
-    :param strokes: A tuple of strokes to look up translations for.
-    :return: The translation. A KeyError will be thrown if the lookup fails.
+    :param strokes: A tuple of strokes to look up text for.
+    :return: The text. A KeyError will be thrown if the lookup fails.
     '''
 
     if len(strokes) != LONGEST_KEY:
