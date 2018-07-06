@@ -52,6 +52,10 @@ def reverse_lookup(text: str) -> List[Tuple[str]]:
     :return: A list of stroke tuples. Empty list if nothing was found.
     '''
 
+    # TODO: Disable for now as this is broken.
+    #       See unit tests.
+    return []
+
     original_text = text
 
     # Need to swap where 0 is if it exists for numeric comparisons
