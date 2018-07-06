@@ -19,10 +19,10 @@ REVERSE_KEY = '*'
 
 def lookup(strokes: Tuple[str]) -> str:
     '''
-    Get the translation that the provided strokes would output.
+    Get the text that the provided strokes would output.
 
-    :param strokes: A tuple of strokes to look up translations for.
-    :return: The translation. A KeyError will be thrown if the lookup fails.
+    :param strokes: A tuple of strokes to look up text for.
+    :return: The text. A KeyError will be thrown if the lookup fails.
     '''
 
     if len(strokes) != LONGEST_KEY:
@@ -71,4 +71,4 @@ def reverse_lookup(text: str) -> List[Tuple[str]]:
     if is_decreasing and len(output) > 1:
         output += REVERSE_KEY
 
-    return [normalize_stroke(output)]
+    return [(normalize_stroke(output),)]
