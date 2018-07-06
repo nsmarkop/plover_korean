@@ -91,7 +91,7 @@ class TestLookup(object):
         with pytest.raises(KeyError):
             lookup(strokes)
 
-@pytest.mark.xfail(reason='Fails to construct -, *, and split cases correctly.')
+@pytest.mark.xfail(reason='Fails to construct * and split cases correctly.')
 class TestReverseLookup(object):
     ''' Test the cases of reverse_lookup '''
 
