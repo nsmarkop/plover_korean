@@ -17,6 +17,7 @@ hgtk = ">=0.1.1"
 pylint = "*"
 pytest = "*"
 pyyaml = "*"
+pytest-cov = "*"
 
 
 [requires]
