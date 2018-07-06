@@ -6,6 +6,7 @@ from plover_korean.cas.dictionaries.ko_cas_base import (
     OPERATOR_ATTACH
 )
 
+
 class TestLookup(object):
     ''' Test the base cases of lookup '''
 
