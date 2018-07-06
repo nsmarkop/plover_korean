@@ -25,13 +25,18 @@ class TestLookup(object):
         with pytest.raises(KeyError):
             lookup(strokes)
 
-    def test_english(self):
+    def test_steno_order_wrong(self):
+        strokes = ('ㅈㅎㅏ',)
+        with pytest.raises(KeyError):
+            lookup(strokes)
+
+    def test_contains_english(self):
         strokes = ('HR',)
         with pytest.raises(KeyError):
             lookup(strokes)
 
-    def test_steno_order_wrong(self):
-        strokes = ('ㅈㅎ',)
+    def test_contains_numbers(self):
+        strokes = ('ㅎㅏ8',)
         with pytest.raises(KeyError):
             lookup(strokes)
 
