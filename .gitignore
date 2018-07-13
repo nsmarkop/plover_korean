@@ -103,5 +103,9 @@ ENV/
 # Visual Studio Code
 .vscode/
 
+# Compiled QT resources
+*_ui.py
+*_rc.py
+
 # pytest
 .pytest_cache/
