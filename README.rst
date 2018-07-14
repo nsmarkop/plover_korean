@@ -1,15 +1,12 @@
 Plover Korean
 =============
 
-Korean plugins for
+Korean stenography for
 `Plover <https://github.com/openstenoproject/plover>`__.
 
-Currently contains:
-
--  `System Overview - CAS-based
-   Layout <#system-overview-cas-based-layout>`__
--  `System Overview - Sorizava-based
-   Layout <#system-overview-sorizava-based-layout>`__
+-  `Korean Core - CAS-based System <#korean-core-cas-based-system>`__
+-  `Korean Expanded - Sorizava-based
+   System <#korean-expanded-sorizava-based-system>`__
 -  `Meta Plugins <#meta-plugins>`__
 
 Installation
@@ -17,18 +14,6 @@ Installation
 
 *This plugin has not been released on PyPI yet, so locally installing
 from source is currently the only option*
-
-Download the latest version of Plover for your operating system from the
-`releases page <https://github.com/openstenoproject/plover/releases>`__.
-Only versions 4.0.0.dev7 and higher are supported.
-
-1. Open Plover
-2. Navigate to the Plugin Manager tool
-3. Select the “plover-korean” plugin entry in the list
-4. Click install
-5. Restart Plover
-
-The same method can be used for updating and uninstalling the plugin.
 
 If you have issues with character misalignment in places like the Paper
 Tape in the Plover GUI try installing `Nanum Gothic
@@ -38,8 +23,8 @@ where possible. The majority of monospaced fonts do not have CJK
 language support which is why this issue comes up for things relying on
 monospaced plain text display.
 
-System Overview - CAS-based Layout
-----------------------------------
+Korean Core - CAS-based System
+------------------------------
 
 .. figure:: https://i.imgur.com/T9Kfc07.png
    :alt: CAS Layout
@@ -47,9 +32,9 @@ System Overview - CAS-based Layout
    CAS Layout
 
 See the reference guide for this system
-`here <https://github.com/nsmarkop/plover_korean_notes>`__.
+`here </plover_korean/system/cas/docs/README.md>`__.
 
-System Overview - Sorizava-based Layout
+Korean Expanded - Sorizava-based System
 ---------------------------------------
 
 .. figure:: https://i.imgur.com/kpEL3mE.png
@@ -57,20 +42,11 @@ System Overview - Sorizava-based Layout
 
    Sorizava Layout
 
-This system is not currently possible to use without modifications to
-setup.cfg to enable the system plugin and manually installing it for
-running Plover from source. It has not been tested and there is no plan
-to focus on dictionary work or resolving issues in the system for now,
-but it’s here for future reference / development.
+See the reference guide for this system
+`here </plover_korean/system/sorizava/docs/README.md>`__.
 
 Meta Plugins
 ------------
-
-Some behavior for Korean support cannot be implemented purely with
-normal dictionary entries and the current system plugin properties.
-Particularly, regex support for Korean syllable blocks does not work
-well so defining and executing on some grammatical rules needs to be
-done separately.
 
 In order to use these meta plugins you need to add them with a
 dictionary entry like the example below:
@@ -81,14 +57,15 @@ dictionary entry like the example below:
         "ㄴㅣㄱ": "{:meta_plugin_name:meta_plugin_argument1,meta_plugin_argument2,...}"
     }
 
-Naturally if there are no arguments for the meta plugin, just the meta
-plugin name is sufficient.
-
-All meta plugins here can be used in conjunction with the rest of the
-standard Plover dictionary formatting.
+If there are no arguments for the meta plugin, just
+``{:meta_plugin_name}`` is sufficient.
 
 Particles
 ~~~~~~~~~
+
+Regex support for Korean syllable blocks does not work well so various
+meta plugins have been created for contextually determining what
+particle to attach to a word.
 
 While many particles are always the same when attached to words, some
 change their form depending on if the word they are attached to ends
@@ -149,11 +126,11 @@ An entry that replicates the “ko_particle_ro” functionality would be:
         "ㄴㅣㄱ": "{:ko_particle_generic:로,으로,ㄹ}"
     }
 
-All particles will attach to the previous entry.
+If you attempt to use these plugins to attach particles to non-Korean
+words they cannot accurately determine how to display and will fall back
+to a default case.
 
-One limitation of these particles is that if they are being attached to
-something that is not written in Hangeul they cannot accurately
-determine which particle variation needs to be used. When that occurs
-both variations will be output instead in the format
-“consonant_option(vowel_option)”. This is open to change based on usage
-and feedback.
+License
+-------
+
+GPLv3+.
