@@ -1,14 +1,15 @@
-''' Unit tests for the base Korean CAS dictionary '''
+"""Unit tests for the base dictionary."""
 
 import pytest
-from plover_korean.cas.dictionaries.ko_cas_base import (
+
+from plover_korean.system.cas.dictionaries.ko_cas_base import (
     lookup,
     OPERATOR_ATTACH
 )
 
 
 class TestLookup(object):
-    ''' Test the base cases of lookup '''
+    """Test the base cases of lookup."""
 
     def test_length_zero(self):
         strokes = ()
@@ -40,8 +41,9 @@ class TestLookup(object):
         with pytest.raises(KeyError):
             lookup(strokes)
 
+
 class TestLookupSyllableBlocks(object):
-    ''' Test syllable block construction cases of lookup '''
+    """Test syllable block construction cases of lookup."""
 
     def test_initial_h_medial_o(self):
         strokes = ('ㅎㅗ',)
@@ -403,8 +405,9 @@ class TestLookupSyllableBlocks(object):
         text = lookup(strokes)
         assert text == f'핪{OPERATOR_ATTACH}'
 
+
 class TestLookupConjugations(object):
-    ''' Test conjugation cases of lookup '''
+    """Test conjugation cases of lookup."""
 
     def test_nda(self):
         strokes = ('ㄴㅣㄷㄴ',)
@@ -518,8 +521,9 @@ class TestLookupConjugations(object):
         text = lookup(strokes)
         assert text == f'닙지만{OPERATOR_ATTACH}'
 
+
 class TestLookupParticles(object):
-    ''' Test particle cases of lookup '''
+    """Test particle cases of lookup."""
 
     def test_ga(self):
         strokes = ('ㅁㅏㅓㄱㄷ',)

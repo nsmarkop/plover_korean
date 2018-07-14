@@ -1,102 +1,120 @@
-'''
-Korean script related helper functions or wrappers.
-'''
+"""Korean script related functions and wrappers."""
+
+from typing import NamedTuple, Optional, Dict
 
 import hgtk
 
 
-def is_letter(letter: str) -> bool:
-    '''
-    Checks if the provided string is a single Korean letter.
+DELIM_RAW_RULE = ','
 
-    :param letter: Letter to check.
 
-    :return: If the string is a Korean letter.
-    '''
+class ParticleRuleInfo(NamedTuple):
+    """Stores Korean particle rule information.
 
-    return hgtk.checker.is_jamo(letter)
+    Attributes:
+        vowel_particle: The particle to use when the previous word ends in a
+            vowel.
+        consonant_particle: The particle to use when the previous word ends in
+            a consonant.
+        exception_consonant: For what final consonant of the previous word
+            should the consonant case be treated as the vowel case. For
+            example: 'ㄹ' for the consonant = '으로', vowel = '로' particle.
+    """
 
-def is_hangeul(word: str) -> bool:
-    '''
-    Checks if the provided string is in the Korean script.
+    vowel_particle: str
+    consonant_particle: str
+    exception_consonant: Optional[str]
 
-    :param word: Word to check.
+    def get_hgtk_format(self) -> Dict[str, Optional[str]]:
+        """Converts the rule info to the format used by hgtk.josa.
 
-    :return: If the string is in the Korean script.
-    '''
+        Returns:
+            A dictionary formatted like:
 
-    return hgtk.checker.is_hangul(word)
+            {
+                'has': vowel,
+                'not': consonant,
+                'except': exception
+            }
+        """
 
-def get_last_syllable(word: str) -> str:
-    '''
-    Gets the last syllable block of the given word.
+        return {
+            'has': self.vowel_particle,
+            'not': self.consonant_particle,
+            'except': self.exception_consonant
+        }
 
-    :param word: The word to use.
+    def get_raw_format(self) -> str:
+        """Converts the rule info to the raw rule format.
 
-    :return: The last syllable block of the word.
-    '''
+        Returns:
+            A string formatted like vowel,consonant,exception.
+        """
 
-    if len(word) >= 1 and is_hangeul(word):
-        last_syllable = word[-1]
-    else:
-        last_syllable = ''
+        delim = DELIM_RAW_RULE
+        raw_rule = f'{self.vowel_particle}{delim}{self.consonant_particle}'
 
-    return last_syllable
+        if self.exception_consonant:
+            raw_rule = f'{raw_rule}{delim}{self.exception_consonant}'
 
-def ends_in_vowel(word: str) -> bool:
-    '''
-    Checks if the given word ends in a vowel.
+        return raw_rule
 
-    :param word: The word to check.
 
-    :return: If the word ends in a vowel.
-    '''
+def load_raw_rule(raw_rule: str) -> ParticleRuleInfo:
+    """Parses raw particle information into a ParticleRuleInfo.
 
-    last_syllable = get_last_syllable(word)
+    Args:
+        raw_rule: The particle information. Format is a comma-delimited string
+            corresponding to ParticleRuleInfo like
+            'vowel,consonant,except_consonant'. Both vowel and consonant must
+            be provided.
 
-    try:
-        is_vowel = last_syllable and not hgtk.checker.has_batchim(last_syllable)
-    except:
-        is_vowel = False
+    Returns:
+        The parsed particle rule info if it's possible to parse.
 
-    return is_vowel
-
-def ends_in_consonant(word: str) -> bool:
-    '''
-    Checks if the given word ends in a consonant.
-
-    :param word: The word to check.
-
-    :return: If the word ends in a consonant.
-    '''
-
-    last_syllable = get_last_syllable(word)
-
-    try:
-        is_consonant = last_syllable and hgtk.checker.has_batchim(last_syllable)
-    except:
-        is_consonant = False
-
-    return is_consonant
-
-def is_last_consonant(word: str, letter_to_match: str) -> bool:
-    '''
-    Checks if the given word ends in the provided consonant.
-
-    :param word: The word to check.
-    :param letter_to_match: The letter to check for as the last consonant.
-
-    :return: If the word ends in the given consonant.
-    '''
-
-    last_syllable = get_last_syllable(word)
+    Raises:
+        ValueError: An error occurred parsing the particle information.
+    """
 
     try:
-        is_match = (last_syllable and
-                    is_letter(letter_to_match) and
-                    ends_in_consonant(word) and
-                    hgtk.letter.decompose(last_syllable)[-1] == letter_to_match)
-    except:
-        is_match = False
+        vowel, consonant, exception = raw_rule.split(DELIM_RAW_RULE, 2)
+    except ValueError:
+        exception = None
+        vowel, consonant = raw_rule.split(DELIM_RAW_RULE, 2)
 
-    return is_match
+    return ParticleRuleInfo(
+        vowel_particle=vowel,
+        consonant_particle=consonant,
+        exception_consonant=exception
+    )
+
+
+def format_unresolved_rule(rule_info: ParticleRuleInfo) -> str:
+    """Formats an unresolved particle rule for display.
+
+    Args:
+        rule_info: The particle rule info to use.
+
+    Returns:
+        The formatted string.
+    """
+
+    return f'{rule_info.consonant_particle}({rule_info.vowel_particle})'
+
+
+def attach_particle(word: str, rule_info: ParticleRuleInfo) -> str:
+    """Attaches a particle to a word.
+
+    Chooses a particle to use based on a word and a rule.
+    If unable to determine a particle, the rule's consonant
+    particle will be attached.
+
+    Args:
+        word: The word to choose a particle for.
+        rule_info: The particle rule info to use.
+
+    Returns:
+        The word with the appropriate particle attached.
+    """
+
+    return hgtk.josa.attach(word, rule_info.get_hgtk_format())

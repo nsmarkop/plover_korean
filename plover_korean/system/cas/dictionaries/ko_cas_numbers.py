@@ -1,35 +1,38 @@
-'''
-Core functionality for the CAS-based Korean stenography system.
-'''
+"""Core functionality for the CAS-based Korean stenography system."""
 
 from typing import Tuple, List
 import operator
 
-from plover.steno import normalize_stroke
-from plover.formatting import META_ATTACH_FLAG, META_START, META_END
-from plover_korean.cas.util import get_stroke_groups, compare_numeric_text
+from plover_korean.system.cas.util import (
+    get_stroke_groups,
+    compare_numeric_text
+)
 
 
-# No support for multi-stroke lookups in this dictionary
 LONGEST_KEY = 1
-OPERATOR_ATTACH = f'{META_START}{META_ATTACH_FLAG}{META_END}'
-
-# The key to reverse the output of the numbers
+OPERATOR_ATTACH = '{^}'
 REVERSE_KEY = '*'
 
-def lookup(strokes: Tuple[str]) -> str:
-    '''
-    Get the text that the provided strokes would output.
 
-    :param strokes: A tuple of strokes to look up text for.
-    :return: The text. A KeyError will be thrown if the lookup fails.
-    '''
+def lookup(strokes: Tuple[str]) -> str:
+    """Get the text that the provided strokes would output.
+
+    Args:
+        strokes: A tuple of strokes to look up text for.
+
+    Returns:
+        The text text output for the stroke.
+
+    Raises:
+        KeyError: The lookup failed to find any matching text.
+    """
 
     if len(strokes) != LONGEST_KEY:
         raise KeyError()
     initial, medial, final, numbers = get_stroke_groups(strokes[0])
 
-    # We're a numbers-only house
+    # An asterisk is used to reverse the numeric output and is the only
+    # acceptable medial for this dictionary
     reverse_output = (REVERSE_KEY in medial and len(medial) == 1)
 
     if not numbers:
@@ -39,18 +42,21 @@ def lookup(strokes: Tuple[str]) -> str:
     elif medial and not reverse_output:
         raise KeyError()
 
-    # Compose the output
     output = numbers[::-1] if reverse_output else numbers
 
     return f'{output}{OPERATOR_ATTACH}'
 
-def reverse_lookup(text: str) -> List[Tuple[str]]:
-    '''
-    Get the strokes that would result in the provided text.
 
-    :param text: The text to look up strokes for.
-    :return: A list of stroke tuples. Empty list if nothing was found.
-    '''
+def reverse_lookup(text: str) -> List[Tuple[str]]:
+    """Gets the possible strokes that would result in the provided text.
+
+    Args:
+        text: The text to look up strokes for.
+
+    Returns:
+        A list of stroke tuples. An empty list will be returned if no possible
+        strokes were found.
+    """
 
     # TODO: Disable for now as this is broken.
     #       See unit tests.
@@ -75,4 +81,4 @@ def reverse_lookup(text: str) -> List[Tuple[str]]:
     if is_decreasing and len(output) > 1:
         output += REVERSE_KEY
 
-    return [(normalize_stroke(output),)]
+    return [(output,)]

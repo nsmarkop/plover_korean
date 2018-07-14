@@ -1,18 +1,14 @@
-'''
-Core functionality for the CAS-based Korean stenography system.
-'''
+"""Core functionality for the CAS-based Korean stenography system."""
 
 from typing import Tuple, List
 
 import hgtk
-from plover.steno import normalize_stroke
-from plover.formatting import META_ATTACH_FLAG, META_START, META_END
-from plover_korean.cas.util import get_stroke_groups
+
+from plover_korean.system.cas.util import get_stroke_groups
 
 
-# No support for multi-stroke lookups in this dictionary
 LONGEST_KEY = 1
-OPERATOR_ATTACH = f'{META_START}{META_ATTACH_FLAG}{META_END}'
+OPERATOR_ATTACH = '{^}'
 
 # TODO: Consider adding a combo INITIAL / MEDIAL list for
 #       conjunction cases like 그리 = ㄱㄹㅣ and 그러 = ㄱㄹㅓ
@@ -38,10 +34,6 @@ INITIAL = {
     'ㅎㄷ': 'ㅌ',
     'ㅎㅂ': 'ㅍ',
     'ㅎ': 'ㅎ'
-
-    # Special cases
-
-    # Add additional user cases here
 }
 
 MEDIAL = {
@@ -67,10 +59,6 @@ MEDIAL = {
     'ㅏㅓ': 'ㅡ',
     'ㅏㅓㅣ': 'ㅢ',
     'ㅣ': 'ㅣ'
-
-    # Special cases
-
-    # Add additional user cases here
 }
 
 FINAL = {
@@ -120,7 +108,7 @@ FINAL = {
     'ㄱㄴㅈ': 'ㄴ지',
     'ㄹㄷ': 'ㄹ 때',
     # TODO: This conflicts with 닔 type of syllables.
-    #       Need to make alternate rule?
+    #       Need to make alternate rule from the theory?
     # 'ㄹㅅ': 'ㄹ 수',
     'ㄹㅈ': 'ㄹ지',
     'ㄹㄱㅁ': 'ㄹ까',
@@ -149,19 +137,21 @@ FINAL = {
     'ㄱㅈ': '지',
     'ㅈㅁ': '지만',
     'ㅎㄷㅂ': '부터'
-
-    # Special cases
-
-    # Add additional user cases here
 }
 
-def lookup(strokes: Tuple[str]) -> str:
-    '''
-    Get the text that the provided strokes would output.
 
-    :param strokes: A tuple of strokes to look up text for.
-    :return: The text. A KeyError will be thrown if the lookup fails.
-    '''
+def lookup(strokes: Tuple[str]) -> str:
+    """Gets the text that the provided strokes would output.
+
+    Args:
+        strokes: A tuple of strokes to look up text for.
+
+    Returns:
+        The text text output for the stroke.
+
+    Raises:
+        KeyError: The lookup failed to find any matching text.
+    """
 
     if len(strokes) != LONGEST_KEY:
         raise KeyError()
@@ -170,7 +160,6 @@ def lookup(strokes: Tuple[str]) -> str:
     if numbers:
         raise KeyError()
 
-    # Compose the output
     try:
         text = f'{INITIAL[initial]}{MEDIAL[medial]}{FINAL[final]}'
         output = hgtk.text.compose(f'{text}{hgtk.text.DEFAULT_COMPOSE_CODE}')
@@ -179,13 +168,17 @@ def lookup(strokes: Tuple[str]) -> str:
 
     return f'{output}{OPERATOR_ATTACH}'
 
-def reverse_lookup(text: str) -> List[Tuple[str]]:
-    '''
-    Get the strokes that would result in the provided text.
 
-    :param text: The text to look up strokes for.
-    :return: A list of stroke tuples. Empty list if nothing was found.
-    '''
+def reverse_lookup(text: str) -> List[Tuple[str]]:
+    """Gets the possible strokes that would result in the provided text.
+
+    Args:
+        text: The text to look up strokes for.
+
+    Returns:
+        A list of stroke tuples. An empty list will be returned if no possible
+        strokes were found.
+    """
 
     output = []
 
@@ -219,7 +212,7 @@ def reverse_lookup(text: str) -> List[Tuple[str]]:
                     stroke.append(f'-{letter}')
                 break
 
-        output.append((normalize_stroke(stroke),))
+        output.append((stroke,))
     except:
         output = []
 

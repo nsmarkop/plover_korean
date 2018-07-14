@@ -1,7 +1,8 @@
-''' Unit tests for the number Korean CAS dictionary '''
+"""Unit tests for the number dictionary."""
 
 import pytest
-from plover_korean.cas.dictionaries.ko_cas_numbers import (
+
+from plover_korean.system.cas.dictionaries.ko_cas_numbers import (
     lookup,
     reverse_lookup,
     OPERATOR_ATTACH
@@ -9,7 +10,7 @@ from plover_korean.cas.dictionaries.ko_cas_numbers import (
 
 
 class TestLookup(object):
-    ''' Test the cases of lookup '''
+    """Test the cases of lookup."""
 
     def test_length_zero(self):
         strokes = ()
@@ -91,9 +92,10 @@ class TestLookup(object):
         with pytest.raises(KeyError):
             lookup(strokes)
 
+
 @pytest.mark.xfail(reason='Fails to construct * and split cases correctly.')
 class TestReverseLookup(object):
-    ''' Test the cases of reverse_lookup '''
+    """Test the cases of reverse_lookup."""
 
     def test_empty_string(self):
         text = ''

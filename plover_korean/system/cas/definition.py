@@ -1,9 +1,10 @@
-'''
-Stenography model for Korean based on the 36-key CAS layout.
-'''
+"""Stenography definition for Korean based on the 36-key CAS layout."""
+
+from typing import Tuple, Dict, List, Optional
+
 
 # Consonant groups don't internally follow a steno order when constructing words.
-KEYS: tuple = (
+KEYS: Tuple[str] = (
     '1-', '2-', '3-', '4-', '5-',
     # 초성 - Initial consonant
     'ㅎ-', 'ㅁ-', 'ㄱ-', 'ㅈ-', 'ㄴ-',
@@ -19,41 +20,25 @@ KEYS: tuple = (
     '-ㅂ', '-ㄴ', '-ㅅ', '-ㅈ', '-ㅁ'
 )
 
-# These are usually the keys that separate the hands so the resulting
-# stroke only includes an actual hyphen if it it skips these keys
-# completely while using either both hands or just the right hand.
-IMPLICIT_HYPHEN_KEYS: tuple = (
+IMPLICIT_HYPHEN_KEYS: Tuple[str] = (
     'ㅗ-', 'ㅏ-', 'ㅜ-',
     '-*', '-ㅓ', '-ㅣ'
 )
 
-# Defines singular keys that can add suffixes to existing entries.
-# The stroke to suffix translation mapping needs to be defined in a dictionary.
-SUFFIX_KEYS: tuple = ()
+SUFFIX_KEYS: Tuple[str] = ()
 
-# Defines the mapping from normal keys into what they should be in
-# numbers for the current stroke when NUMBER_KEY is pressed.
-# This system has explicit number keys, so there is no need for this concept.
+# This system has explicit number keys, so there is no need for these.
 NUMBER_KEY: str = ''
-NUMBERS: dict = {}
+NUMBERS: Dict[str, str] = {}
 
-# Causes the previous stroke to be undone.
-# The stroke for undo can be overridden or alternatives can be made in a dictionary.
+# Can be overridden or alternatives can be made in a dictionary.
 UNDO_STROKE_STENO: str = '-ㅂㄴ'
 
-# Defines language specific spelling patterns for suffixes
-# as a list of Python regex entries for input and output.
-ORTHOGRAPHY_RULES: list = []
-# Defines other ways a suffix can be written.
-ORTHOGRAPHY_RULES_ALIASES: dict = {}
-# Defines a file containing... set words that are the result of
-# suffixes I guess? Seems to be a shortcut way of not needing to
-# actually evaluate the orthography rules if it is not needed.
-ORTHOGRAPHY_WORDLIST: str = None
+ORTHOGRAPHY_RULES: List[Tuple[str, str]] = []
+ORTHOGRAPHY_RULES_ALIASES: Dict[str, str] = {}
+ORTHOGRAPHY_WORDLIST: Optional[str] = None
 
-# This system uses more keys than most machines for western stenography
-# which by default won't be configured here.
-KEYMAPS: dict = {
+KEYMAPS: Dict[str, Dict[str, Tuple[str]]] = {
     # This is mapped how the CAS keyboard arranges the QWERTY layer.
     # For users of normal QWERTY, some keys should be re-mapped.
     'Keyboard': {
@@ -107,8 +92,8 @@ KEYMAPS: dict = {
     }
 }
 
-DICTIONARIES_ROOT: str = 'asset:plover_korean:cas/dictionaries'
-DEFAULT_DICTIONARIES: list = [
+DICTIONARIES_ROOT: str = 'asset:plover_korean:system:cas:dictionaries'
+DEFAULT_DICTIONARIES: List[str] = [
     'ko_cas_numbers.py',
     'ko_cas_base.py'
 ]

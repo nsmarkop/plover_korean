@@ -1,6 +1,4 @@
-'''
-Reusable functionality needed throughout the system.
-'''
+"""Reusable functionality needed throughout the system."""
 
 from typing import Tuple, Callable
 import re
@@ -18,21 +16,24 @@ STROKE_REGEX = re.compile(r'''
 
 STENO_DASH = '-'
 
+
 def get_stroke_groups(stroke: str) -> Tuple[str, str, str, str]:
-    '''
-    Parse a stroke into its logical stroke groups.
+    """Parses a stroke into its logical stroke groups.
 
-    :param stroke: The stroke to create groups from.
+    Args:
+        stroke: The stroke to create groups from.
 
-    :return: A tuple of the following, all in steno order:
-             The keys in the "initial" group of the stroke.
-             The keys in the "medial" group of the stroke.
-             The keys in the "final" group of the stroke.
-             The keys in the "number" group of the stroke.
-    :raises: KeyError
-    '''
+    Returns:
+        A tuple of the following, all in steno order:
+        The keys in the 'initial' group of the stroke.
+        The keys in the 'medial' group of the stroke.
+        The keys in the 'final' group of the stroke.
+        The keys in the 'number' group of the stroke.
 
-    # Process the stroke into logical groups for processing
+    Raises:
+        KeyError: The provided stroke was considered invalid.
+    """
+
     result = STROKE_REGEX.match(stroke)
     if not result:
         raise KeyError()
@@ -50,15 +51,20 @@ def get_stroke_groups(stroke: str) -> Tuple[str, str, str, str]:
 
     return initial, medial, final, numbers
 
+
 def compare_numeric_text(text: str, relate: Callable) -> bool:
-    '''
-    Checks each sequential entry in a numeric string for a relationship.
+    """Compares numeric text with itself sequentially.
 
-    :param text: The string to check.
-    :param relate: The operator function to compare sequential entries with.
+    Checks each digit in the numeric string in order, comparing the them
+    according to the provided relationship one by one.
 
-    :return: If the string sequentially follows the provided relationship.
-    '''
+    Args:
+        text: The numeric text string to check.
+        relate: The operator function to compare sequential entries with.
+
+    Returns:
+        If the numeric text sequentially follows the provided relationship.
+    """
 
     if not text.isdigit():
         return False
