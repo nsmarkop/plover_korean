@@ -10,7 +10,7 @@ from plover_korean.system.cas.dictionaries.ko_cas_numbers import (
 
 
 class TestLookup(object):
-    """Test the cases of lookup."""
+    """Tests the cases of lookup."""
 
     def test_length_zero(self):
         strokes = ()
@@ -95,7 +95,7 @@ class TestLookup(object):
 
 @pytest.mark.xfail(reason='Fails to construct * and split cases correctly.')
 class TestReverseLookup(object):
-    """Test the cases of reverse_lookup."""
+    """Tests the cases of reverse_lookup."""
 
     def test_empty_string(self):
         text = ''

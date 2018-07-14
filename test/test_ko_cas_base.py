@@ -9,7 +9,7 @@ from plover_korean.system.cas.dictionaries.ko_cas_base import (
 
 
 class TestLookup(object):
-    """Test the base cases of lookup."""
+    """Tests the base cases of lookup."""
 
     def test_length_zero(self):
         strokes = ()
@@ -43,7 +43,7 @@ class TestLookup(object):
 
 
 class TestLookupSyllableBlocks(object):
-    """Test syllable block construction cases of lookup."""
+    """Tests syllable block construction cases of lookup."""
 
     def test_initial_h_medial_o(self):
         strokes = ('ㅎㅗ',)
@@ -407,7 +407,7 @@ class TestLookupSyllableBlocks(object):
 
 
 class TestLookupConjugations(object):
-    """Test conjugation cases of lookup."""
+    """Tests conjugation cases of lookup."""
 
     def test_nda(self):
         strokes = ('ㄴㅣㄷㄴ',)
@@ -523,7 +523,7 @@ class TestLookupConjugations(object):
 
 
 class TestLookupParticles(object):
-    """Test particle cases of lookup."""
+    """Tests particle cases of lookup."""
 
     def test_ga(self):
         strokes = ('ㅁㅏㅓㄱㄷ',)
