@@ -4,9 +4,8 @@ Plover Korean
 Korean stenography for
 `Plover <https://github.com/openstenoproject/plover>`__.
 
--  `Korean Core - CAS-based System <#korean-core-cas-based-system>`__
--  `Korean Expanded - Sorizava-based
-   System <#korean-expanded-sorizava-based-system>`__
+-  `Korean Modern C - CAS-based System <#korean-modern-c>`__
+-  `Korean Modern S - Sorizava-based System <#korean-modern-s>`__
 -  `Meta Plugins <#meta-plugins>`__
 
 Installation
@@ -23,26 +22,28 @@ where possible. The majority of monospaced fonts do not have CJK
 language support which is why this issue comes up for things relying on
 monospaced plain text display.
 
-Korean Core - CAS-based System
-------------------------------
+Korean Modern C
+---------------
 
 .. figure:: https://i.imgur.com/T9Kfc07.png
    :alt: CAS Layout
 
    CAS Layout
 
-See the reference guide for this system
+Korean Modern C is a Korean stenography system based on the system used
+by Korean CAS machines. See the reference guide for this system
 `here </plover_korean/system/cas/docs/README.md>`__.
 
-Korean Expanded - Sorizava-based System
----------------------------------------
+Korean Modern S
+---------------
 
 .. figure:: https://i.imgur.com/kpEL3mE.png
    :alt: Sorizava Layout
 
    Sorizava Layout
 
-See the reference guide for this system
+Korean Modern S is a Korean stenography system based on the system used
+by Sorizava machines. See the reference guide for this system
 `here </plover_korean/system/sorizava/docs/README.md>`__.
 
 Meta Plugins

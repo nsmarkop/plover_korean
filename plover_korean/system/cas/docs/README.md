@@ -1,12 +1,13 @@
-# Korean Core Notes
+# Korean Modern C Documentation
 
-These are reference notes for the "Korean Core" CAS-based Korean stenography system implemented in the [Korean plugin](https://github.com/nsmarkop/plover_korean) for [Plover](https://github.com/openstenoproject/plover).
+The Computer Aided Steno-machine, or CAS, features one of the two modern stenography systems for Korean in use today and was originally created by [Korea Steno](http://www.koreasteno.com/). Korean Modern C is a Korean stenography system based on the system used by Korean CAS machines and is implemented in the [Korean plugin](https://github.com/nsmarkop/plover_korean) for [Plover](https://github.com/openstenoproject/plover).
 
-Basic overview of the system:
+The following documentation is meant to serve as a reference for the theory behind the system for those wishing to learn it. Most sections are just in the format of brief notes I took when studying theory books.
 
-1. [Introduction](1-introduction.md)
-2. [Steno Order](2-steno-order.md)
-3. [Fundamentals](3-fundamentals.md)
+General notes about the system:
+
+1. [Steno Order](2-steno-order.md)
+2. [Fundamentals](3-fundamentals.md)
 
 Notes from 컴퓨터 속기 I:
 
@@ -29,7 +30,7 @@ Notes from 컴퓨터 속기 II:
 
 ... More to come!
 
-Some good reference YouTube channels:
+Some YouTube channels to see this stenography system in action:
 
 * [속기사시나공](https://www.youtube.com/channel/UCfGGHBuw6YeltIo8o6_VXeA/videos)
 * [BEOB.T](https://www.youtube.com/user/bobzoyo1/videos)
