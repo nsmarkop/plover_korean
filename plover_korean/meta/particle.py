@@ -35,6 +35,7 @@ def apply_particle(context: _Context,
     last_word = ''.join(context.last_words(1))
     action.prev_replace = last_word
     action.prev_attach = True
+    action.next_attach = False
     action.word = None
     action.text = attach_particle(last_word, rule_info)
 
