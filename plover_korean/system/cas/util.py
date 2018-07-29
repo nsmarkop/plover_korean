@@ -35,7 +35,7 @@ def get_stroke_groups(stroke: str) -> Tuple[str, str, str, str]:
     """
 
     result = STROKE_REGEX.match(stroke)
-    if not result:
+    if not stroke or not result:
         raise KeyError()
 
     stroke_groups = result.groupdict()
