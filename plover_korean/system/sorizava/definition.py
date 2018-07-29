@@ -112,7 +112,7 @@ KEYMAPS: Dict[str, Dict[str, Tuple[str]]] = {
     }
 }
 
-DICTIONARIES_ROOT: str = 'asset:plover_korean:system:sorizava:dictionaries'
+DICTIONARIES_ROOT: str = 'asset:plover_korean:system/sorizava/dictionaries'
 DEFAULT_DICTIONARIES: List[str] = [
     'ko_sorizava_base.py',
     'ko_sorizava_main.json'
