@@ -8,3 +8,4 @@ include plover_korean/system/sorizava/dictionaries/*.json
 include plover_korean/system/sorizava/dictionaries/*.py
 include plover_korean/system/sorizava/docs/*.md
 include test/__init__.py
+include tox.ini
