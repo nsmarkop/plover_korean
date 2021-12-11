@@ -28,7 +28,7 @@ IMPLICIT_HYPHEN_KEYS: Tuple[str] = (
 SUFFIX_KEYS: Tuple[str] = ()
 
 # This system has explicit number keys, so there is no need for these.
-NUMBER_KEY: str = ''
+NUMBER_KEY: str = None
 NUMBERS: Dict[str, str] = {}
 
 # Can be overridden or alternatives can be made in a dictionary.
