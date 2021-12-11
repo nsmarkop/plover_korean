@@ -66,7 +66,7 @@ KEYMAPS: Dict[str, Dict[str, Tuple[str]]] = {
 
 
         '-*': 'v',
-        '-ㅓ': 'k',
+        '-ㅓ': 'b',
         '-ㅣ': 'n',
 
         '-6': '6',
