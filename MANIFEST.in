@@ -1,0 +1,10 @@
+include Pipfile
+include Pipfile.lock
+include README.md
+include plover_korean/system/cas/dictionaries/partial/*.json
+include plover_korean/system/cas/dictionaries/partial/*.yaml
+include plover_korean/system/cas/docs/*.md
+include plover_korean/system/sorizava/dictionaries/*.json
+include plover_korean/system/sorizava/dictionaries/*.py
+include plover_korean/system/sorizava/docs/*.md
+include test/__init__.py
