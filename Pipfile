@@ -16,7 +16,7 @@ hgtk = ">=0.1.1"
 
 pylint = "*"
 pytest = "*"
-pyyaml = ">=4.2b1"
+pyyaml = ">=5.4"
 pytest-cov = "*"
 
 
